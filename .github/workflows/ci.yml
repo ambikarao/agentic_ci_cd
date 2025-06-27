@@ -24,6 +24,8 @@ jobs:
           npm test -- --watch=false --browsers=ChromeHeadless > test.log
       - name: Agentic Auto-Fix (LangChain)
         if: failure()
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
           pip install langchain openai langchain_community
           python auto_fix_agent.py test.log
