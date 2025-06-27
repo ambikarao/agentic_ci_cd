@@ -22,12 +22,12 @@ describe('DashboardComponent', () => {
   });
 
   it('should have 4 users', () => {
-    expect(component.users.length).toBe(3);
+    expect(component.users.length).toBe(4);
   });
 
   it('should render user names in the table', () => {
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.textContent).toContain('Alice');
+    expect(compiled.textContent).toContain('Aliceeee');
     expect(compiled.textContent).toContain('Bob');
     expect(compiled.textContent).toContain('Charlie');
     expect(compiled.textContent).toContain('Diana');
