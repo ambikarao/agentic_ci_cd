@@ -25,7 +25,7 @@ jobs:
       - name: Agentic Auto-Fix (LangChain)
         if: failure()
         run: |
-          pip install langchain openai
+          pip install langchain openai langchain_community
           python auto_fix_agent.py test.log
       - name: Build
         run: npm run build 
