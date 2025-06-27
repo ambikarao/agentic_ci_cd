@@ -20,4 +20,23 @@ describe('DashboardComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should have 4 users', () => {
+    expect(component.users.length).toBe(3);
+  });
+
+  it('should render user names in the table', () => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.textContent).toContain('Alice');
+    expect(compiled.textContent).toContain('Bob');
+    expect(compiled.textContent).toContain('Charlie');
+    expect(compiled.textContent).toContain('Diana');
+  });
+
+  it('should display correct status for each user', () => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.textContent).toContain('Active');
+    expect(compiled.textContent).toContain('Inactive');
+    expect(compiled.textContent).toContain('Pending');
+  });
 });
