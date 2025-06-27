@@ -2,6 +2,7 @@ import os
 import sys
 from langchain.llms import OpenAI
 from langchain.prompts import PromptTemplate
+import openai
 
 # Read test log file
 log_file = sys.argv[1] if len(sys.argv) > 1 else 'test.log'
@@ -28,6 +29,7 @@ Test Log:
 """
 )
 
+openai.api_key = os.getenv("OPENAI_API_KEY")
 llm = OpenAI(temperature=0)
 
 response = llm(prompt.format(log=log_content))
