@@ -32,14 +32,14 @@ Example response:
 --- a/src/app/app.component.spec.ts
 +++ b/src/app/app.component.spec.ts
 @@ -25,7 +25,7 @@
-   it('should render title', () => {
+   it('should render title', () => {{{{
      const fixture = TestBed.createComponent(AppComponent);
      fixture.detectChanges();
      const compiled = fixture.nativeElement as HTMLElement;
 -    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, agentic_ci_cd_experiment');
 +    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, world');
-   });
- });
+   }}});
+ }}});
 ```
 
 Test Log:
