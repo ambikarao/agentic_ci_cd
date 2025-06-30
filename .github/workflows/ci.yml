@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [ main ]
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -29,5 +33,16 @@ jobs:
         run: |
           pip install langchain langchain_community langchain-google-genai
           python auto_fix_agent.py test.log
+      - name: Create Pull Request with Fix
+        uses: peter-evans/create-pull-request@v6
+        if: success()
+        with:
+          commit-message: "fix(agentic): Apply automated fix for failing tests"
+          title: "🤖 Agentic Fix for Failing Tests"
+          body: |
+            The agentic CI/CD layer detected a test failure and has automatically generated a fix.
+            Please review the changes and merge if they are correct.
+          branch: "agentic-fix"
+          delete-branch: true
       - name: Build
         run: npm run build 
