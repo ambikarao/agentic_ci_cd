@@ -25,6 +25,7 @@ prompt = PromptTemplate(
     template="""
 You are an expert Angular developer and a git tool. The following test log contains failed tests.
 Analyze the log and provide a fix as a git diff.
+The diff must use zero context lines (diff -U0 format).
 Your response must contain ONLY the git diff inside a single markdown code block.
 
 Test Log:
