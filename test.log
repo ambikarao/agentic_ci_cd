@@ -1,0 +1,25 @@
+
+> agentic-ci-cd-experiment@0.0.0 test
+> ng test --watch=false --browsers=ChromeHeadless
+
+[32m30 06 2025 11:28:30.646:INFO [karma-server]: [39mKarma v6.4.4 server started at http://localhost:9876/
+[32m30 06 2025 11:28:30.647:INFO [launcher]: [39mLaunching browsers ChromeHeadless with concurrency unlimited
+[32m30 06 2025 11:28:30.650:INFO [launcher]: [39mStarting browser ChromeHeadless
+[32m30 06 2025 11:28:41.808:INFO [Chrome Headless 137.0.0.0 (Linux x86_64)]: [39mConnected on socket xfOYeVGw1v4nAR0fAAAB with id 51889341
+Chrome Headless 137.0.0.0 (Linux x86_64): Executed 0 of 7 SUCCESS (0 secs / 0 secs)
+[1A[2KChrome Headless 137.0.0.0 (Linux x86_64): Executed 1 of 7 SUCCESS (0 secs / 0.098 secs)
+[1A[2KChrome Headless 137.0.0.0 (Linux x86_64): Executed 2 of 7 SUCCESS (0 secs / 0.105 secs)
+[1A[2KChrome Headless 137.0.0.0 (Linux x86_64): Executed 3 of 7 SUCCESS (0 secs / 0.108 secs)
+[1A[2KChrome Headless 137.0.0.0 (Linux x86_64) DashboardComponent should render user names in the table FAILED
+	Expected 'User DashboardIDNameEmailStatus1Alicealice@example.comActive2Bobbob@example.comInactive3Charliecharlie@example.comActive4Dianadiana@example.comPending' to contain 'Alicee'.
+	    at <Jasmine>
+	    at UserContext.apply (src/app/dashboard/dashboard.component.spec.ts:30:34)
+	    at _ZoneDelegate.invoke (node_modules/zone.js/fesm2015/zone.js:369:28)
+	    at ProxyZoneSpec.onInvoke (node_modules/zone.js/fesm2015/zone-testing.js:2081:39)
+	    at _ZoneDelegate.invoke (node_modules/zone.js/fesm2015/zone.js:368:34)
+Chrome Headless 137.0.0.0 (Linux x86_64): Executed 4 of 7 (1 FAILED) (0 secs / 0.12 secs)
+[1A[2KChrome Headless 137.0.0.0 (Linux x86_64): Executed 5 of 7 (1 FAILED) (0 secs / 0.124 secs)
+[1A[2KChrome Headless 137.0.0.0 (Linux x86_64): Executed 6 of 7 (1 FAILED) (0 secs / 0.127 secs)
+[1A[2KChrome Headless 137.0.0.0 (Linux x86_64): Executed 7 of 7 (1 FAILED) (0 secs / 0.129 secs)
+[1A[2KChrome Headless 137.0.0.0 (Linux x86_64): Executed 7 of 7 (1 FAILED) (0.191 secs / 0.129 secs)
+TOTAL: 1 FAILED, 6 SUCCESS
