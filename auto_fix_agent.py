@@ -28,7 +28,7 @@ Test Log:
 """
 )
 
-llm = ChatGoogleGenerativeAI(model="gemini-1.0-pro", temperature=0)
+llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash", temperature=0)
 
 response = llm.invoke(prompt.format(log=log_content))
 print("\n--- Suggested Fix by Agentic Auto-Fix Layer ---\n")
