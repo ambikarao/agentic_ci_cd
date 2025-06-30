@@ -25,9 +25,9 @@ jobs:
       - name: Agentic Auto-Fix (LangChain)
         if: failure()
         env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
         run: |
-          pip install langchain openai langchain_community
+          pip install langchain langchain_community langchain-google-genai
           python auto_fix_agent.py test.log
       - name: Build
         run: npm run build 
