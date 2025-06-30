@@ -39,7 +39,7 @@ jobs:
         if: always() && steps.agentic_auto_fix.outcome == 'success'
         with:
           commit-message: "fix(agentic): Apply automated fix for failing tests"
-          title: "🤖 Agentic Fix for Failing Tests"
+          title: "Agentic Fix for Failing Tests"
           body: |
             The agentic CI/CD layer detected a test failure and has automatically generated a fix.
             Please review the changes and merge if they are correct.
