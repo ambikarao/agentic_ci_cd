@@ -54,7 +54,7 @@ with open("fix.patch", "w") as f:
 
 # Apply the patch
 try:
-    subprocess.run(["git", "apply", "--recount", "fix.patch"], check=True)
+    subprocess.run("patch -p1 -F3 < fix.patch", shell=True, check=True)
     print("\n✅ Patch applied successfully!")
 except subprocess.CalledProcessError as e:
     print(f"\n❌ Failed to apply patch: {e}")
