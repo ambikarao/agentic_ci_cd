@@ -27,21 +27,6 @@ You are an expert Angular developer and a git tool. The following test log conta
 Analyze the log and provide a fix as a git diff.
 Your response must contain ONLY the git diff inside a single markdown code block.
 
-Example response:
-```diff
---- a/src/app/app.component.spec.ts
-+++ b/src/app/app.component.spec.ts
-@@ -25,7 +25,7 @@
-   it('should render title', () => {{{{
-     const fixture = TestBed.createComponent(AppComponent);
-     fixture.detectChanges();
-     const compiled = fixture.nativeElement as HTMLElement;
--    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, agentic_ci_cd_experiment');
-+    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, world');
-   }}});
- }}});
-```
-
 Test Log:
 {log}
 """
