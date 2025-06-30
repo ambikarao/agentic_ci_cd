@@ -19,14 +19,13 @@ if 'FAILED' not in log_content and 'Error' not in log_content:
     print('No failed tests detected.')
     sys.exit(0)
 
-# Prepare prompt for LLM
+# Prompt for full file content
 prompt = PromptTemplate(
     input_variables=["log"],
     template="""
-You are an expert Angular developer and a git tool. The following test log contains failed tests.
-Analyze the log and provide a fix as a git diff.
-The diff must use zero context lines (diff -U0 format).
-Your response must contain ONLY the git diff inside a single markdown code block.
+You are an expert Angular developer. The following test log contains failed tests.
+Analyze the log and provide the full corrected content of src/app/dashboard/dashboard.component.spec.ts.
+Respond with only the code in a single markdown block.
 
 Test Log:
 {log}
@@ -36,26 +35,15 @@ Test Log:
 llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash", temperature=0)
 
 response = llm.invoke(prompt.format(log=log_content))
-fix_content = response.content
+file_content_match = re.search(r"```[a-zA-Z]*\n([\s\S]*?)```", response.content)
 
-print("\n--- Suggested Fix by Agentic Auto-Fix Layer ---\n")
-print(fix_content)
-
-# Extract diff content
-diff_match = re.search(r"```diff\n(.*?)```", fix_content, re.DOTALL)
-
-if not diff_match:
-    print("Could not find a diff in the LLM response.")
+if not file_content_match:
+    print("Could not find a code block in the LLM response.")
     sys.exit(1)
 
-diff_content = diff_match.group(1)
-with open("fix.patch", "w") as f:
-    f.write(diff_content)
+file_content = file_content_match.group(1)
 
-# Apply the patch
-try:
-    subprocess.run("patch -p1 -F3 < fix.patch", shell=True, check=True)
-    print("\n✅ Patch applied successfully!")
-except subprocess.CalledProcessError as e:
-    print(f"\n❌ Failed to apply patch: {e}")
-    sys.exit(1) 
+with open("src/app/dashboard/dashboard.component.spec.ts", "w") as f:
+    f.write(file_content)
+
+print("\n✅ File overwritten with agentic fix!") 
