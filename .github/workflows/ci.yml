@@ -23,7 +23,7 @@ jobs:
         run: npm run lint --if-present
       - name: Run tests and capture log
         run: |
-          npm test -- --watch=false --browsers=ChromeHeadless > test.log
+          npm test -- --watch=false --browsers=ChromeHeadless > test.log 2>&1
       - name: Agentic Auto-Fix (LangChain)
         if: failure()
         env:
