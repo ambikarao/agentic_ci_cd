@@ -1,8 +1,6 @@
 name: CI/CD
 
 on:
-  push:
-    branches: [ main ]
   pull_request:
     branches: [ main ]
 
@@ -27,23 +25,11 @@ jobs:
         run: |
           npm test -- --watch=false --browsers=ChromeHeadless > test.log
       - name: Agentic Auto-Fix (LangChain)
-        id: agentic_auto_fix
         if: failure()
         env:
           GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
         run: |
           pip install langchain langchain_community langchain-google-genai
           python auto_fix_agent.py test.log
-      - name: Create Pull Request with Fix
-        uses: peter-evans/create-pull-request@v6
-        if: always() && steps.agentic_auto_fix.outcome == 'success'
-        with:
-          commit-message: "fix(agentic): Apply automated fix for failing tests"
-          title: "Agentic Fix for Failing Tests"
-          body: |
-            The agentic CI/CD layer detected a test failure and has automatically generated a fix.
-            Please review the changes and merge if they are correct.
-          branch: "agentic-fix"
-          delete-branch: true
       - name: Build
         run: npm run build 

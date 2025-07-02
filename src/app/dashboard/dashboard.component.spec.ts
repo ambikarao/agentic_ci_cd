@@ -27,7 +27,7 @@ describe('DashboardComponent', () => {
 
   it('should render user names in the table', () => {
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.textContent).toContain('Alicee');
+    expect(compiled.textContent).toContain('Alice');
     expect(compiled.textContent).toContain('Bob');
     expect(compiled.textContent).toContain('Charlie');
     expect(compiled.textContent).toContain('Diana');
