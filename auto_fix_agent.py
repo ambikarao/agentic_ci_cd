@@ -2,6 +2,7 @@ import os
 import sys
 import subprocess
 import re
+import difflib
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.prompts import PromptTemplate
 
@@ -43,7 +44,28 @@ if not file_content_match:
 
 file_content = file_content_match.group(1)
 
-with open("src/app/dashboard/dashboard.component.spec.ts", "w") as f:
-    f.write(file_content)
+# Read the current file content
+current_file_path = "src/app/dashboard/dashboard.component.spec.ts"
+with open(current_file_path, "r") as f:
+    current_content = f.readlines()
 
-print("\n✅ File overwritten with agentic fix!") 
+# Prepare the new content as lines
+suggested_content = file_content.splitlines(keepends=True)
+
+# Generate a unified diff
+unified_diff = difflib.unified_diff(
+    current_content,
+    suggested_content,
+    fromfile=current_file_path,
+    tofile=current_file_path + ".suggested",
+    lineterm=""
+)
+
+diff_output = "".join(line + "\n" for line in unified_diff)
+
+diff_file_path = "src/app/dashboard/dashboard.component.spec.diff"
+with open(diff_file_path, "w") as f:
+    f.write(diff_output)
+
+print(f"\n💡 Diff suggestion saved to {diff_file_path}. You can review and apply it manually.")
+# (No file overwrite in CI mode) 
