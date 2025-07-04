@@ -31,5 +31,24 @@ jobs:
         run: |
           pip install langchain langchain_community langchain-google-genai
           python auto_fix_agent.py test.log
+      - name: Read diff file
+        if: failure()
+        id: read_diff
+        run: |
+          echo "diff_content<<EOF" >> $GITHUB_OUTPUT
+          cat src/app/dashboard/dashboard.component.spec.diff >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+      - name: Post agentic diff as PR comment
+        if: failure()
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            💡 **Agentic Auto-Fix Suggestion (Diff) for `src/app/dashboard/dashboard.component.spec.ts`:**
+
+            ```diff
+            ${{ steps.read_diff.outputs.diff_content }}
+            ```
       - name: Build
         run: npm run build 
